@@ -199,7 +199,7 @@ const disableButton = (button) => {
   button.style.backgroundColor = "#ccc";
   button.style.cursor = "not-allowed";
 };
-function $$1(selector) {
+function $(selector) {
   return document.querySelector(selector);
 }
 function $all(selector) {
@@ -226,13 +226,13 @@ const SYSTEM_MESSAGE = {
   PROFIT: (profit) => `총 수익률을 ${profit}% 입니다.`
 };
 const showLottoCount = (lottoCount) => {
-  const purchaseResult = $$1(".purchase-result");
+  const purchaseResult = $(".purchase-result");
   const lottoCountUI = document.createElement("p");
   lottoCountUI.textContent = SYSTEM_MESSAGE.COUNT(lottoCount);
   purchaseResult.appendChild(lottoCountUI);
 };
 const showLottoTickets = (lottoArray) => {
-  const purchaseResult = $$1(".purchase-result");
+  const purchaseResult = $(".purchase-result");
   const lottoList = document.createElement("ul");
   lottoList.classList.add("lotto-list");
   const fragment = document.createDocumentFragment();
@@ -261,10 +261,10 @@ const showWinningNumberForm = (isValid) => {
 };
 const submitPurchaseForm = () => {
   return new Promise((resolve) => {
-    $$1("#purchase-form").addEventListener("submit", async (event) => {
+    $("#purchase-form").addEventListener("submit", async (event) => {
       event.preventDefault();
       const { lottoArray, lottoCount } = handleLottoPurchase();
-      disableButton($$1("#purchase-form button"));
+      disableButton($("#purchase-form button"));
       showLottoCount(lottoCount);
       showLottoTickets(lottoArray);
       showWinningNumberForm(true);
@@ -273,8 +273,8 @@ const submitPurchaseForm = () => {
   });
 };
 const handleLottoPurchase = () => {
-  const priceInput = $$1("#price");
-  const errorUI = $$1("#price-error");
+  const priceInput = $("#price");
+  const errorUI = $("#price-error");
   resetError(errorUI);
   try {
     const priceValue = priceInput.value.trim();
@@ -402,9 +402,9 @@ const validateWinningNumber = (winningNumberInput) => {
   return runValidators([checkEmpty, checkEmptyItem, checkIsInteger, checkLengthValid, checkRange, checkIsDistinct], winningNumberInput);
 };
 const setupModalControl = () => {
-  const modal = $$1("#result-modal");
-  const closeButton = $$1(".close-button");
-  const restartButton = $$1("#restart-button");
+  const modal = $("#result-modal");
+  const closeButton = $(".close-button");
+  const restartButton = $("#restart-button");
   closeButton.addEventListener("click", () => closeModal(modal));
   restartButton.addEventListener("click", () => restartGame(modal));
   document.addEventListener("keydown", (event) => {
@@ -415,27 +415,27 @@ const setupModalControl = () => {
   });
 };
 const updateMatchingResult = (matchingResult, profitRate) => {
-  $$1("#match-3").textContent = `${matchingResult[3]}개`;
-  $$1("#match-4").textContent = `${matchingResult[4]}개`;
-  $$1("#match-5").textContent = `${matchingResult[5]}개`;
-  $$1("#match-bonus").textContent = `${matchingResult["bonus"]}개`;
-  $$1("#match-6").textContent = `${matchingResult[6]}개`;
+  $("#match-3").textContent = `${matchingResult[3]}개`;
+  $("#match-4").textContent = `${matchingResult[4]}개`;
+  $("#match-5").textContent = `${matchingResult[5]}개`;
+  $("#match-bonus").textContent = `${matchingResult["bonus"]}개`;
+  $("#match-6").textContent = `${matchingResult[6]}개`;
   const profitRateText = `당신의 총 수익률은 ${profitRate}%입니다.`;
-  $$1("#profit-rate").textContent = profitRateText;
+  $("#profit-rate").textContent = profitRateText;
 };
 const submitWinningNumberForm = (lottoArray) => {
-  $$1("#winning-number-form").addEventListener("submit", (event) => {
+  $("#winning-number-form").addEventListener("submit", (event) => {
     event.preventDefault();
     const winningLotto = handleWinningNumber();
     const matchingResult = calculateMatchingResult(winningLotto, lottoArray);
     const profitRate = calculateProfitRate(matchingResult, lottoArray.length);
     updateMatchingResult(matchingResult, profitRate);
-    showModal($$1("#result-modal"));
+    showModal($("#result-modal"));
     setupModalControl();
   });
 };
 const handleWinningNumber = () => {
-  const errorUI = $$1("#winning-number-error");
+  const errorUI = $("#winning-number-error");
   resetError(errorUI);
   try {
     const { winningNumbers, bonusNumber } = getWinningNumbers();
@@ -447,7 +447,7 @@ const handleWinningNumber = () => {
 };
 const getWinningNumbers = () => {
   const winningNumberInput = Array.from($all(".winning-number-boxes input")).map((input) => input.value.trim()).filter((value) => value !== "");
-  const bonusNumberInput = $$1("#bonus").value.trim();
+  const bonusNumberInput = $("#bonus").value.trim();
   validateWinningNumber(winningNumberInput);
   const winningNumbers = parseWinningNumber(winningNumberInput);
   validateBonusNumber(winningNumbers, bonusNumberInput);
