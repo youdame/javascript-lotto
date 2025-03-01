@@ -199,7 +199,7 @@ const disableButton = (button) => {
   button.style.backgroundColor = "#ccc";
   button.style.cursor = "not-allowed";
 };
-function $(selector) {
+function $$1(selector) {
   return document.querySelector(selector);
 }
 function $all(selector) {
@@ -226,13 +226,13 @@ const SYSTEM_MESSAGE = {
   PROFIT: (profit) => `총 수익률을 ${profit}% 입니다.`
 };
 const showLottoCount = (lottoCount) => {
-  const purchaseResult = $(".purchase-result");
+  const purchaseResult = $$1(".purchase-result");
   const lottoCountUI = document.createElement("p");
   lottoCountUI.textContent = SYSTEM_MESSAGE.COUNT(lottoCount);
   purchaseResult.appendChild(lottoCountUI);
 };
 const showLottoTickets = (lottoArray) => {
-  const purchaseResult = $(".purchase-result");
+  const purchaseResult = $$1(".purchase-result");
   const lottoList = document.createElement("ul");
   lottoList.classList.add("lotto-list");
   const fragment = document.createDocumentFragment();
@@ -245,7 +245,7 @@ const showLottoTickets = (lottoArray) => {
 const createLottoListItem = (lotto) => {
   const listItem = document.createElement("li");
   const ticketIcon = document.createElement("img");
-  ticketIcon.src = "public/ticket.png";
+  ticketIcon.src = "ticket.png";
   ticketIcon.alt = "로또 티켓";
   ticketIcon.classList.add("lotto-icon");
   const numbersSpan = document.createElement("span");
@@ -255,12 +255,16 @@ const createLottoListItem = (lotto) => {
   listItem.appendChild(numbersSpan);
   return listItem;
 };
+const showWinningNumberForm = (isValid) => {
+  const winningNumberForm = $("#winning-number-form");
+  winningNumberForm.style.display = isValid ? "block" : "none";
+};
 const submitPurchaseForm = () => {
   return new Promise((resolve) => {
-    $("#purchase-form").addEventListener("submit", async (event) => {
+    $$1("#purchase-form").addEventListener("submit", async (event) => {
       event.preventDefault();
       const { lottoArray, lottoCount } = handleLottoPurchase();
-      disableButton($("#purchase-form button"));
+      disableButton($$1("#purchase-form button"));
       showLottoCount(lottoCount);
       showLottoTickets(lottoArray);
       showWinningNumberForm(true);
@@ -269,8 +273,8 @@ const submitPurchaseForm = () => {
   });
 };
 const handleLottoPurchase = () => {
-  const priceInput = $("#price");
-  const errorUI = $("#price-error");
+  const priceInput = $$1("#price");
+  const errorUI = $$1("#price-error");
   resetError(errorUI);
   try {
     const priceValue = priceInput.value.trim();
@@ -281,10 +285,6 @@ const handleLottoPurchase = () => {
     showError(errorUI, error.message);
     showWinningNumberForm(false);
   }
-};
-const showWinningNumberForm = (isValid) => {
-  const winningNumberForm = $("#winning-number-form");
-  winningNumberForm.style.display = isValid ? "block" : "none";
 };
 class WinningLotto {
   constructor(lotto, bonusNumber) {
@@ -402,9 +402,9 @@ const validateWinningNumber = (winningNumberInput) => {
   return runValidators([checkEmpty, checkEmptyItem, checkIsInteger, checkLengthValid, checkRange, checkIsDistinct], winningNumberInput);
 };
 const setupModalControl = () => {
-  const modal = $("#result-modal");
-  const closeButton = $(".close-button");
-  const restartButton = $("#restart-button");
+  const modal = $$1("#result-modal");
+  const closeButton = $$1(".close-button");
+  const restartButton = $$1("#restart-button");
   closeButton.addEventListener("click", () => closeModal(modal));
   restartButton.addEventListener("click", () => restartGame(modal));
   document.addEventListener("keydown", (event) => {
@@ -415,27 +415,27 @@ const setupModalControl = () => {
   });
 };
 const updateMatchingResult = (matchingResult, profitRate) => {
-  $("#match-3").textContent = `${matchingResult[3]}개`;
-  $("#match-4").textContent = `${matchingResult[4]}개`;
-  $("#match-5").textContent = `${matchingResult[5]}개`;
-  $("#match-bonus").textContent = `${matchingResult["bonus"]}개`;
-  $("#match-6").textContent = `${matchingResult[6]}개`;
+  $$1("#match-3").textContent = `${matchingResult[3]}개`;
+  $$1("#match-4").textContent = `${matchingResult[4]}개`;
+  $$1("#match-5").textContent = `${matchingResult[5]}개`;
+  $$1("#match-bonus").textContent = `${matchingResult["bonus"]}개`;
+  $$1("#match-6").textContent = `${matchingResult[6]}개`;
   const profitRateText = `당신의 총 수익률은 ${profitRate}%입니다.`;
-  $("#profit-rate").textContent = profitRateText;
+  $$1("#profit-rate").textContent = profitRateText;
 };
 const submitWinningNumberForm = (lottoArray) => {
-  $("#winning-number-form").addEventListener("submit", (event) => {
+  $$1("#winning-number-form").addEventListener("submit", (event) => {
     event.preventDefault();
     const winningLotto = handleWinningNumber();
     const matchingResult = calculateMatchingResult(winningLotto, lottoArray);
     const profitRate = calculateProfitRate(matchingResult, lottoArray.length);
     updateMatchingResult(matchingResult, profitRate);
-    showModal($("#result-modal"));
+    showModal($$1("#result-modal"));
     setupModalControl();
   });
 };
 const handleWinningNumber = () => {
-  const errorUI = $("#winning-number-error");
+  const errorUI = $$1("#winning-number-error");
   resetError(errorUI);
   try {
     const { winningNumbers, bonusNumber } = getWinningNumbers();
@@ -447,7 +447,7 @@ const handleWinningNumber = () => {
 };
 const getWinningNumbers = () => {
   const winningNumberInput = Array.from($all(".winning-number-boxes input")).map((input) => input.value.trim()).filter((value) => value !== "");
-  const bonusNumberInput = $("#bonus").value.trim();
+  const bonusNumberInput = $$1("#bonus").value.trim();
   validateWinningNumber(winningNumberInput);
   const winningNumbers = parseWinningNumber(winningNumberInput);
   validateBonusNumber(winningNumbers, bonusNumberInput);
