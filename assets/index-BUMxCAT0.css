@@ -1,0 +1,398 @@
+/*
+  1. Use a more-intuitive box-sizing model.
+*/
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+/*
+  2. Remove default margin, padding
+*/
+* {
+  margin: 0;
+  padding: 0;
+  font: inherit;
+  color: inherit;
+}
+html,
+body {
+  height: 100%;
+  -ms-overflow-style: none; /* IE and 엣지 */
+  scrollbar-width: none; /* 파이어폭스 */
+}
+/*
+  Typographic tweaks!
+  3. Add accessible line-height
+  4. Improve text rendering
+*/
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+/*
+  5. Improve media defaults
+*/
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+/*
+  6. Remove built-in form typography styles
+*/
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+/*
+  7. Avoid text overflows
+*/
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+/*
+  8. list style remove
+*/
+ul,
+li {
+  list-style: none;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+input {
+  border: none;
+  padding: none;
+}
+input:focus {
+  outline: none;
+}
+button {
+  border: 0;
+  background: transparent;
+}
+/*
+  9. Create a root stacking context
+*/
+#root,
+#__next {
+  isolation: isolate;
+}
+@font-face {
+  font-family: 'Pretendard';
+  src: url('/javascript-lotto/assets/Pretendard-Regular-D3QqU-QW.woff') format('woff');
+  font-weight: 400;
+}
+@font-face {
+  font-family: 'Pretendard';
+  src: url('/javascript-lotto/assets/Pretendard-SemiBold-Bqxv5DO9.woff') format('woff');
+  font-weight: 600;
+}
+@font-face {
+  font-family: 'Pretendard';
+  src: url('/javascript-lotto/assets/Pretendard-Bold-yXN3THd-.woff') format('woff');
+  font-weight: 700;
+}
+@font-face {
+  font-family: 'Pretendard';
+  src: url('/javascript-lotto/assets/Pretendard-ExtraBold-CxOl3w-j.woff') format('woff');
+  font-weight: 800;
+}
+html,
+body {
+  font-family: 'Pretendard', sans-serif;
+}
+html,
+body,
+button,
+input,
+h1,
+h2 {
+  line-height: normal;
+  font-style: normal;
+  font-weight: 400;
+}
+a,
+button {
+  cursor: pointer;
+}
+.root {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.content {
+  flex: 1;
+}
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.cursor-pointer {
+  cursor: pointer;
+}
+/* 타이포그래피 */
+.typo-title {
+  font-weight: 800; /* ExtraBold */
+  font-size: 1.5rem; /* 24px → rem */
+  font-weight: 800;
+  line-height: 150%;
+}
+.typo-subtitle {
+  font-weight: 600; /* SemiBold */
+  font-size: 1.25rem; /* 16px → rem */
+  line-height: 120%;
+  letter-spacing: 0.15px;
+}
+.typo-body {
+  font-weight: 400; /* Regular */
+  font-size: 0.9375rem; /* 15px → rem */
+  line-height: 160%;
+  letter-spacing: 0.5px;
+}
+.typo-caption {
+  font-weight: 700; /* Bold */
+  font-size: 0.875rem; /* 14px → rem */
+  line-height: 114%;
+  letter-spacing: 1.25px;
+}
+:root {
+  --primary: #4e5ba6;
+  --gray-1: #ffffff;
+  --gray-2: #fcfcfc;
+  --gray-3: #b4b4b4;
+
+  --gray-4: #8b8b8b;
+  --gray-5: #000000;
+}
+header {
+  padding: 14px 130px;
+  background: var(--primary);
+}
+
+body {
+  background-color: var(--gray-2);
+  color: var(--gray-5);
+}
+
+header > h1 {
+  color: var(--gray-1);
+}
+
+main {
+  padding: 84px 0;
+  padding-bottom: 84px;
+}
+
+.error-message {
+  color: red;
+  font-size: 14px;
+  visibility: hidden;
+}
+
+footer {
+  border-top: 1px solid rgba(78, 91, 166, 0.2);
+  padding: 24px;
+}
+
+footer > p {
+  color: var(--primary);
+}
+.lotto-box {
+  width: 414px;
+  min-height: 728px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  padding: 40px 16px 32px 16px;
+  border-radius: 4px;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  background: var(--gray-1);
+}
+
+#purchase-form {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.purchase-input {
+  display: flex;
+  gap: 16px;
+}
+.purchase-input > input {
+  display: flex;
+  height: 36px;
+  padding: 8px;
+  align-items: flex-start;
+  border-radius: 4px;
+  border: 1px solid var(--gray-3);
+  flex-grow: 1;
+}
+
+.purchase-input > button {
+  background: var(--primary);
+  padding: 4px 6px;
+  border-radius: 4px;
+  color: var(--gray-1);
+  width: 56px;
+}
+
+.purchase-result {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.purchase-result > ul {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.purchase-result > ul > li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.purchase-result > ul > li > img {
+  display: flex;
+  justify-content: center;
+  width: 34px;
+  height: 36px;
+}
+
+.lotto-numbers {
+  letter-spacing: 0.5px;
+}
+#winning-number-form {
+  display: none;
+  flex-direction: column;
+}
+
+.winning-number-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.winning-number-group,
+.bonus-number-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.winning-number-boxes {
+  display: flex;
+  gap: 8px;
+}
+
+.number-box {
+  width: 40px;
+  height: 40px;
+  font-size: 18px;
+  text-align: center;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.bonus-box {
+  align-self: flex-end;
+}
+
+#winning-number-form > button {
+  width: 100%;
+  background-color: var(--primary);
+  color: var(--gray-1);
+  border-radius: 4px;
+  padding: 12px;
+}
+
+.spacing-4 {
+  height: 4px;
+}
+.spacing-12 {
+  height: 12px;
+}
+
+.spacing-28 {
+  height: 28px;
+}
+/* 모달 스타일 */
+.modal {
+  display: none; /* 기본적으로 숨김 */
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* 반투명 배경 */
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-content {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  position: relative;
+  background: var(--gray-1);
+  padding: 40px 16px 32px 16px;
+  border-radius: 8px;
+  text-align: center;
+  width: 350px;
+}
+
+.close-button {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 8px;
+}
+
+tr {
+  border-bottom: 1px solid #ccc;
+}
+
+th {
+  border-top: 1px solid #ccc;
+  font-weight: 600;
+}
+
+#restart-button {
+  background: var(--primary);
+  color: var(--gray-1);
+  border-radius: 4px;
+  padding: 12px;
+}
+
+.bold-600 {
+  font-weight: 600;
+}

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>🎱 행운의 로또</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script type="module" crossorigin src="/javascript-lotto/assets/index-Cb5l-SOn.js"></script>
+    <link rel="stylesheet" crossorigin href="/javascript-lotto/assets/index-BUMxCAT0.css">
+  </head>
+  <body class="typo-body">
+    <header>
+      <h1 class="typo-title">🎱 행운의 로또</h1>
+    </header>
+    <main class="flex-center">
+      <section class="lotto-box">
+        <h2 class="typo-title flex-center">🎱 내 번호 당첨 확인 🎱</h2>
+        <form id="purchase-form">
+          <label for="price">구입할 금액을 입력해주세요.</label>
+          <div class="purchase-input">
+            <input type="number" id="price" placeholder="금액" />
+            <button class="typo-caption">구입</button>
+          </div>
+          <p class="error-message typo-caption" id="price-error"></p>
+        </form>
+
+        <div class="purchase-result"></div>
+
+        <form id="winning-number-form">
+          <p>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</p>
+          <div class="spacing-12"></div>
+          <div class="winning-number-container">
+            <div class="winning-number-group">
+              <label>당첨 번호</label>
+              <div class="winning-number-boxes">
+                <input type="text" id="winning-1" class="number-box" maxlength="2" />
+                <input type="text" id="winning-2" class="number-box" maxlength="2" />
+                <input type="text" id="winning-3" class="number-box" maxlength="2" />
+                <input type="text" id="winning-4" class="number-box" maxlength="2" />
+                <input type="text" id="winning-5" class="number-box" maxlength="2" />
+                <input type="text" id="winning-6" class="number-box" maxlength="2" />
+              </div>
+            </div>
+
+            <div class="bonus-number-group">
+              <label for="bonus">보너스 번호</label>
+              <input type="text" id="bonus" class="number-box bonus-box" maxlength="2" />
+            </div>
+          </div>
+          <div class="spacing-4"></div>
+          <p class="error-message" id="winning-number-error"></p>
+          <div class="spacing-28"></div>
+          <button class="typo-caption" id="result-button">결과 확인하기</button>
+        </form>
+      </section>
+
+      <!-- 당첨 통계 모달 -->
+      <div id="result-modal" class="modal">
+        <div class="modal-content">
+          <span class="close-button">&times;</span>
+          <h2 class="typo-subtitle">🏆 당첨 통계 🏆</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>일치 개수</th>
+                <th>당첨금</th>
+                <th>당첨 개수</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>3개</td>
+                <td>5,000</td>
+                <td id="match-3">n개</td>
+              </tr>
+              <tr>
+                <td>4개</td>
+                <td>50,000</td>
+                <td id="match-4">n개</td>
+              </tr>
+              <tr>
+                <td>5개</td>
+                <td>1,500,000</td>
+                <td id="match-5">n개</td>
+              </tr>
+              <tr>
+                <td>5개+보너스볼</td>
+                <td>30,000,000</td>
+                <td id="match-bonus">n개</td>
+              </tr>
+              <tr>
+                <td>6개</td>
+                <td>2,000,000,000</td>
+                <td id="match-6">n개</td>
+              </tr>
+            </tbody>
+          </table>
+          <p class="bold-600" id="profit-rate">당신의 총 수익률은 %입니다.</p>
+          <button id="restart-button" class="bold-600">다시 시작하기</button>
+        </div>
+      </div>
+    </main>
+    <footer><p class="typo-caption flex-center">Copyright 2023. woowacourse</p></footer>
+  </body>
+</html>
